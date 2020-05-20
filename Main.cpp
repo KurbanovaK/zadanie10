@@ -1,5 +1,5 @@
 #include<iostream>
-#include <regex>
+#include <regex> 
 
 bool isSmaller(std::string str1, std::string str2)
 {
@@ -12,9 +12,9 @@ bool isSmaller(std::string str1, std::string str2)
 
     for (int i = 0; i < s1; i++)
     {
-        if (str1[i] < str2[i])
+        if (str1[i] > str2[i])
             return true;
-        else if (str1[i] > str2[i])
+        else if (str1[i] < str2[i])
             return false;
     }
     return false;
@@ -22,8 +22,7 @@ bool isSmaller(std::string str1, std::string str2)
 
 std::string findDiff(std::string str1, std::string str2)
 {
-
-    if (isSmaller(str1, str2))
+   if (isSmaller(str1, str2))
         swap(str1, str2);
 
     std::string str = "";
@@ -35,7 +34,6 @@ std::string findDiff(std::string str1, std::string str2)
 
     for (int i = s2 - 1; i >= 0; i--)
     {
-
         int sub = ((str1[i + diff] - '0') - (str2[i] - '0') - carry);
         if (sub < 0)
         {
@@ -56,21 +54,20 @@ std::string findDiff(std::string str1, std::string str2)
             continue;
         }
         int sub = ((str1[i] - '0') - carry);
-        if (i > 0 || sub > 0)
+        if (i > 0 || sub > 0) 
             str.push_back(sub + '0');
         carry = 0;
-
     }
 
-    std::reverse(str.begin(), str.end());
+    reverse(str.begin(), str.end());
 
     return str;
 }
 
 int main()
 {
-    std::string str1 = "11111111";
-    std::string str2 = "100000000000000000000";
+    std::string str1, str2;
+    std::cin >> str1 >> str2;
     std::cout << findDiff(str1, str2);
     return 0;
 }
